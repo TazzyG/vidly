@@ -12,24 +12,26 @@ class Movies extends Component {
     return (
       <div className="container">
         <span> Showing {this.formatCount()} movies in the database </span>
-        <table>
+        <table className="table">
           <thead>
             <th>Title</th>
             <th>Genre</th>
             <th>Stock</th>
-            Rate
-            <th>
-              <th />
-            </th>
+            <th>Rate</th>
+            <th />
           </thead>
           <tbody>
-            <td>placeholder-title</td>
-            <td>placeholder-genre</td>
-            <td>placeholder-stock</td>
-            <td>place-holder Rate</td>
-            <td>
-              <button className="btn btn-danger m-2">Delete</button>
-            </td>
+            {this.state.movies.map(movie => (
+              <tr>
+                <td>{movie.title}</td>
+                <td>{movie.genre.name}</td>
+                <td>{movie.numberInStock}</td>
+                <td>{movie.dailyRentalRate}</td>
+                <td>
+                  <button className="btn btn-danger"> Delete </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
