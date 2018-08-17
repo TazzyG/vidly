@@ -5,6 +5,7 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
+import Movies from "./components/movies";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Movies />, document.getElementById("root"));
 registerServiceWorker();
