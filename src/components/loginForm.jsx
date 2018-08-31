@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-username = React.createRef();
-componentDidMount() {
-    this.username.current.focus();
-}
 
 class LoginForm extends Component {
+  username = React.createRef();
+
+  componentDidMount() {
+    this.username.current.focus();
+  }
   handleSubmit = e => {
     e.preventDefault();
     // call the server
