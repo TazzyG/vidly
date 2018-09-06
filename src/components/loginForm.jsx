@@ -9,7 +9,13 @@ class LoginForm extends Component {
     }
   };
   validate = () => {
-    return { username: "Username is required." };
+    const errors = {};
+    const { account } = this.state;
+    if (account.username.trim() === "")
+      errors.username = "Username is required.";
+    if (account.password.trim() === "")
+      errors.password = "Password is required.";
+    return Object.keys(errors).length === 0 ? null : errors;
   };
   //   componentDidMount() {
   //     this.username.current.focus();
@@ -17,10 +23,11 @@ class LoginForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const errors = this.validate();
+    console.log(errors);
     this.setState({ errors });
     if (errors) return;
-    // therefor we won't call the server
-    const username = this.username.current.value;
+    // therefore we won't call the server
+
     console.log("Submitted");
   };
 
