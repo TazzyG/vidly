@@ -38,14 +38,10 @@ class LoginForm extends Component {
     console.log("Submitted");
   };
   validateProperty = ({ name, value }) => {
-    if (name === "username") {
-      if (value.trim() === "") return "Username is required.";
-      // more rules
-    }
-    if (name === "password") {
-      if (value.trim() === "") return "Password is required.";
-      // more rules
-    }
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    const { error } = Joi.validate(obj, schema);
+    return error ? error.details[0].message : null;
   };
 
   handleChange = ({ currentTarget: input }) => {
