@@ -1,23 +1,32 @@
 import React, { Component } from "react";
-import Input from "./common/imput";
+import Input from "./common/input";
 
 class LoginForm extends Component {
   state = {
-    account: { username: "", password: "" }
+    account: { username: "", password: "" },
+    errors: {
+      // username: "Username is required."
+    }
+  };
+  validate = () => {
+    return { username: "Username is required." };
   };
   //   componentDidMount() {
   //     this.username.current.focus();
   //   }
   handleSubmit = e => {
     e.preventDefault();
-    // call the server
+    const errors = this.validate();
+    this.setState({ errors });
+    if (errors) return;
+    // therefor we won't call the server
     const username = this.username.current.value;
     console.log("Submitted");
   };
 
   handleChange = ({ currentTarget: input }) => {
     const account = { ...this.state.account };
-    account[inpute.name] = input.value;
+    account[input.name] = input.value;
     this.setState({ account });
   };
   render() {
@@ -26,13 +35,13 @@ class LoginForm extends Component {
       <div>
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
-          <Login
+          <Input
             name="username"
             value={account.username}
             label="Username"
             onChange={this.handleChange}
           />
-          <Login
+          <Input
             name="password"
             value={account.password}
             label="Password"
