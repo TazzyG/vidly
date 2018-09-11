@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import MoviesTable from "./moviesTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
@@ -6,6 +7,7 @@ import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
+// import SearchBox from "./searchBox";
 
 class Movies extends Component {
   state = {
@@ -42,6 +44,10 @@ class Movies extends Component {
   handleGenreSelect = genre => {
     this.setState({ selectedGenre: genre, currentPage: 1 });
   };
+
+  // handleSearch = query => {
+  //   this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1 });
+  // };
 
   handleSort = sortColumn => {
     this.setState({ sortColumn });
@@ -84,7 +90,15 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <span> Showing {totalCount} movies in the database </span>
+          <Link
+            to="/movies/new"
+            className="btn btn-primary"
+            style={{ marginBottom: 20 }}
+          >
+            New Movie
+          </Link>
+          <p> Showing {totalCount} movies in the database </p>
+
           <MoviesTable
             movies={movies}
             sortColumn={sortColumn}
